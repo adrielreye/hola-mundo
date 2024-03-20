@@ -85,7 +85,7 @@
                         </nav>
                     </div>
                     <div class="col-1">
-                        <button class="btn mx-5" onclick="window.location.href = 'carrito.html';">
+                        <button class="btn mx-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                 class="bi bi-bag-fill mt-3" viewBox="0 0 16 16" style="fill: white;">
                                 <path
