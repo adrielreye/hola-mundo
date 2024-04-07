@@ -73,7 +73,7 @@
             </div>
             <div class="col-5" style="align-self: center;">
                 <form action="./src/assets/php/iniciar_sesion.php" method="post">
-
+                    
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
                             name="correo">
@@ -89,12 +89,11 @@
                             ¿Olvidaste tu contraseña?
                         </a>
                     </p>
-                    <button name="ingresar" type="submit" class="btn btn-success">Ingresar</button>
+                    <button name="ingresar" type="submit" class="btn btn-success" >Ingresar</button>
                     <button type="button" class="btn btn-secondary">Registrarse</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
-
 </html>
