@@ -1,56 +1,46 @@
 <?php
-    session_start();
-
-    include('conexion.php');
+// Verificar si se enviaron los datos del formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recuperar los datos del formulario
+    $correoElectronico = $_POST["correo"];
+    $contraseña = $_POST["pass"];
     
-    if (isset($_POST['correo']) && isset($_POST['pass'])) {
-    
-        function validate($data)
-        {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-    
-        $correo = validate($_POST['correo']);
-        $pass = validate($_POST['pass']);
-    
-        if (empty($correo)) {
-            header("Location: indexcopy.php?error=El correo es requerido");
-            exit();
-        } else if (empty($pass)) {
-            header("Location: indexcopy.php?error=La contraseña es requerida");
-            exit();
-        } else {
-            $pass = md5($pass); // Si la contraseña está encriptada en MD5 en la base de datos, si no, elimina esta línea
-    
-            // Consulta SQL para buscar el usuario en la base de datos
-            $sql = "SELECT * FROM usuarios WHERE correo_electronico = '$correo' AND contrasena = '$pass'";
-            $result = mysqli_query($conexion, $sql);
-    
-            if ($result) {
-                if (mysqli_num_rows($result) === 1) {
-                    // Inicio de sesión exitoso
-                    $row = mysqli_fetch_assoc($result);
-                    $_SESSION['correo'] = $row['correo_electronico']; // Guardar el correo en la sesión
-                    $_SESSION['id'] = $row['id']; // Guardar el ID de usuario en la sesión u otros datos que necesites
-                    header("Location: ../../../Principalcopy.php"); // Redirigir a la página principal
-                    exit();
-                } else {
-                    // Si no se encuentra un usuario con las credenciales proporcionadas
-                    header("Location: ../../../indexcopy.php?error=Correo o contraseña incorrectos");
-                    exit();
-                }
-            } else {
-                // Error en la consulta SQL
-                header("Location: ../../../indexcopy.php?error=Error al intentar iniciar sesión");
-                exit();
-            }
-        }
+    // Validar los datos del formulario (puedes agregar más validaciones según tus necesidades)
+    if (empty($correoElectronico) || empty($contraseña)) {
+        $error = "Por favor, complete todos los campos.";
     } else {
-        // Si se intenta acceder a este script sin enviar el formulario de inicio de sesión
-        header("Location: ../../../indexcopy.php");
-        exit();
+        try {
+            // Realizar la conexión a la base de datos (asumiendo que ya tienes una clase para manejar la conexión)
+            require_once 'conexion.php';
+            $database = new Database();
+            $conn = $database->getConnection();
+            
+            // Consulta SQL para verificar el inicio de sesión
+            $query = "SELECT ID, Nombre FROM usuario WHERE CorreoElectronico = ? AND Contraseña = ?";
+            $statement = $conn->prepare($query);
+            $statement->execute([$correoElectronico, $contraseña]);
+
+            // Verificar si se encontró un usuario con las credenciales proporcionadas
+            if ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                // Iniciar sesión
+                session_start();
+                $_SESSION["id"] = $row["ID"];
+                $_SESSION["nombre"] = $row["Nombre"];
+                
+                // Redireccionar dependiendo del tipo de usuario
+                if ($correoElectronico === 'juan@admin.com' && $contraseña === 'contraseña1') {
+                    header("Location: ./../../../adminindex.html");
+                } else {
+                    header("Location: ./../../../index.html");
+                }
+                exit();
+            } else {
+                $error = "Correo electrónico o contraseña incorrectos.";
+            }
+        } catch (PDOException $e) {
+            // Si ocurre un error de PDO, imprime la información del error
+            echo "Error de PDO: " . $e->getMessage();
+        }
     }
-    ?>
+}
+?>
