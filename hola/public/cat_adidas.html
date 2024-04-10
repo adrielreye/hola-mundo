@@ -71,7 +71,7 @@
                             </nav>
                         </div>
                         <div class="col-1">
-                            <button class="btn">
+                            <button class="btn-carrito">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-bag-fill mt-3 mx-2" viewBox="0 0 16 16" style="fill: black;">
                                     <path
@@ -111,8 +111,7 @@
                                             <div class="btn-group">
                                                 <button type="button"
                                                     class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="1">Añadir</button>
                                             </div>
                                         </div>
                                     </div>
@@ -130,8 +129,7 @@
                                                 <div class="btn-group">
                                                     <button type="button"
                                                         class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="2">Añadir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,8 +148,7 @@
                                                 <div class="btn-group">
                                                     <button type="button"
                                                         class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="3">Añadir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,8 +168,7 @@
                                                 <div class="btn-group">
                                                     <button type="button"
                                                         class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="4">Añadir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -191,8 +187,7 @@
                                                 <div class="btn-group">
                                                     <button type="button"
                                                         class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="5">Añadir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +206,8 @@
                                                 <div class="btn-group">
                                                     <button type="button"
                                                         class="btn btn-sm btn-outline-secondary">Detalles</button>
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Añadir</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary añadir-btn" data-product-id="6">Añadir</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -228,3 +223,36 @@
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function(){
+        $(".añadir-btn").click(function(){
+            var productID = $(this).data('product-id');
+            $.ajax({
+                type: 'POST',
+                url: 'insertar_producto.php',
+                data: { product_id: productID },
+                success: function(response){
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    // Esperar a que el documento esté completamente cargado
+    document.addEventListener("DOMContentLoaded", function() {
+        // Seleccionar el botón del carrito por su clase
+        var btnCarrito = document.querySelector(".btn-carrito");
+
+        // Agregar un evento de clic al botón del carrito
+        btnCarrito.addEventListener("click", function() {
+            // Redirigir al usuario a la página del carrito
+            window.location.href = "carrito.php"; // Reemplaza "ruta_a_tu_carrito" con la URL de tu página del carrito
+        });
+    });
+</script>
