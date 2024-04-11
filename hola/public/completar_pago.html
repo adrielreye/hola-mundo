@@ -121,56 +121,60 @@
                     <div class="container-fluid">
                         <p style="font-size: 25px; color: whitesmoke;">Información de contacto</p>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="Correo electrónico">
+         <form action="src/assets/php/bd_comp_pg.php" method="post"> 
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Correo electrónico" name="correo_electronico">
                             <label for="floatingInput">Correo electrónico</label>
                         </div>
                         <p style="font-size: 25px; color: whitesmoke;">Información de Entrega</p>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="calle">
                             <label for="floatingInput">Calle</label>
                         </div>
                         <div class="row">
                             <div class="col-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="" name="numero_exterior">
                                     <label for="floatingInput">N. Ext*</label>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="" name="numero_interior">
                                     <label for="floatingInput">N. Int</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="calles_colindantes">
                             <label for="floatingInput">Calles colindantes</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="municipio">
                             <label for="floatingInput">Delegación/Municipio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="estado">
                             <label for="floatingInput">Estado</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="colonia">
                             <label for="floatingInput">Colonia</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder=""
-                                onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10">
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" name="telefono">
                             <label for="floatingInput">Teléfono</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
-                            <label for="floatingInput">Detalles del municipio</label>
+                            <input type="text" class="form-control" id="floatingInput" placeholder="" name="detalles_adicionales">
+                            <label for="floatingInput">Detalles adicionales</label>
                         </div>
+                        <div><button type="submit" class="btn btn-secondary">Continuar</button></div>
                     </div>
                 </div>
+                
+        </form>
 
                 <div class="col-4 mt-5 mx-5">
                     <div class="row align-items-center justify-content-center">
@@ -220,15 +224,15 @@
                                     <div class="col-1"></div>
                                     <div class="col-2 mt-1">
                                         <div class="form-check mt-5">
-                                            <input class="form-check-input custom-radio" type="radio"
-                                                name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input custom-radio" type="radio" 
+                                            name="flexRadioDefault" id="envioEstandar">
+                                            <label class="form-check-label" for="envioEstandar">
                                             </label>
                                         </div>
                                         <div class="form-check mt-5">
-                                            <input class="form-check-input custom-radio" type="radio"
-                                                name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input custom-radio" type="radio" 
+                                            name="flexRadioDefault" id="envioEconomico">
+                                            <label class="form-check-label" for="envioEconomico">
                                             </label>
                                         </div>
                                     </div>
@@ -275,6 +279,7 @@
                     </div>
                 </div>
 
+                
                 <div class="col-3 d-flex align-items-center">
                     <div class="container-fluid resaltar-borde-container-f">
                         <div class="row">
@@ -282,8 +287,7 @@
                                 <p style="color: whitesmoke;">1 producto</p>
                             </div>
                             <div class="col">
-                                <input class="form-control w-75" type="text" value="$1500.00"
-                                    aria-label="$1500.00" disabled readonly>
+                                <input class="form-control w-75" type="text" value="$1500.00" aria-label="$1500.00" disabled readonly>
                             </div>
                         </div>
                         <div class="row">
@@ -291,8 +295,7 @@
                                 <p style="color: whitesmoke;">Precio original</p>
                             </div>
                             <div class="col">
-                                <input class="form-control w-75" type="text" value="$1500.00"
-                                    aria-label="$1500.00" disabled readonly>
+                                <input class="form-control w-75" type="text" value="$1500.00" aria-label="$1500.00" disabled readonly>
                             </div>
                         </div>
                         <div class="row">
@@ -300,8 +303,7 @@
                                 <p style="color: whitesmoke;">Gastos de envío</p>
                             </div>
                             <div class="col">
-                                <input class="form-control w-75" type="text" value="$99.00"
-                                    aria-label="$99.00" disabled readonly>
+                                <input id="gastosEnvio" class="form-control w-75" type="text" value="" aria-label="$99.00" disabled readonly>
                             </div>
                         </div>
                         <div class="row mt-5">
@@ -309,11 +311,38 @@
                                 <p style="color: whitesmoke;" class="">Total</p>
                             </div>
                             <div class="col">
-                                <input class="form-control w-75" type="text" value="$1599.00"
-                                    aria-label="$99.00" disabled readonly>
+                                <input id="precioTotal" class="form-control w-75" type="text" value="$1500.00" aria-label="$99.00" disabled readonly>
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <script>
+                    // Obtener los elementos de radio buttons
+                    const envioEstandar = document.getElementById('envioEstandar');
+                    const envioEconomico = document.getElementById('envioEconomico');
+                    // Obtener los elementos de input de precios
+                    const gastosEnvio = document.getElementById('gastosEnvio');
+                    const precioTotal = document.getElementById('precioTotal');
+                
+                    // Función para actualizar los precios
+                    function actualizarPrecios() {
+                        if (envioEstandar.checked) {
+                            gastosEnvio.value = '$99.00';
+                            precioTotal.value = '$1599.00';
+                        } else if (envioEconomico.checked) {
+                            gastosEnvio.value = '$50.00';
+                            precioTotal.value = '$1550.00';
+                        }
+                    }
+                
+                    // Asignar el evento change a los radio buttons
+                    envioEstandar.addEventListener('change', actualizarPrecios);
+                    envioEconomico.addEventListener('change', actualizarPrecios);
+                
+                    // Llamar a la función para establecer los precios iniciales
+                    actualizarPrecios();
+                </script>
 
 
 

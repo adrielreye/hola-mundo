@@ -1,15 +1,26 @@
 <?php
-// Datos de conexión a la base de datos
-$hostname = "localhost";
-$usuario = "root";
-$contrasena = "";
-$basedatos = "pcstore";
 
-// Conexión a la base de datos
-$conexion = new mysqli($hostname, $usuario, $contrasena, $basedatos);
+class Database {
+    // Cambia estas variables con los detalles de tu base de datos
+    private $host = "localhost";
+    private $db_name = "pcstore";
+    private $username = "root";
+    private $password = "";
+    public $conn;
 
-// Verifica si hay errores en la conexión
-if ($conexion->connect_error) {
-    die("Error al conectar con la base de datos: " . $conexion->connect_error);
+    // Método para obtener la conexión a la base de datos
+    public function getConnection() {
+        $this->conn = null;
+
+        try {
+            // Conexión mediante PDO
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->exec("set names utf8");
+        } catch(PDOException $exception) {
+            echo "Error de conexión: " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
 }
 ?>
